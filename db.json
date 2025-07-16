@@ -1,0 +1,61 @@
+{
+  "tasks": [
+    {
+      "id": "bb7e",
+      "text": "Calling Mum",
+      "dueDate": "2025-07-18T09:10:00.000Z",
+      "done": false
+    },
+    {
+      "id": "9cf5",
+      "text": "Doing Assignment",
+      "dueDate": "2025-07-17T10:05:00.000Z",
+      "done": false
+    },
+    {
+      "id": "eb52",
+      "text": "Going for Children",
+      "dueDate": "2025-07-17T12:00:00.000Z",
+      "done": false
+    },
+    {
+      "id": "ac2b",
+      "text": "Paying Bills",
+      "dueDate": "2025-07-16T13:15:00.000Z",
+      "done": false
+    },
+    {
+      "id": "4663",
+      "text": "Ironing Clothes",
+      "dueDate": "2025-07-16T17:15:00.000Z",
+      "done": false
+    }
+  ],
+  "quotes": [
+    {
+      "id": "1",
+      "text": "He who awaits much can expect little.",
+      "author": "Gabriel Garcia"
+    },
+    {
+      "id": "2",
+      "text": "In delay there lies no plenty.",
+      "author": "William Shakespear"
+    },
+    {
+      "id": "3",
+      "text": "Tomorrow is often the busiest day of the week.",
+      "author": "Spanish Proverb"
+    },
+    {
+      "id": "4",
+      "text": "Procrastination is opportunity’s natural assassin.",
+      "author": "Victor Kiam"
+    },
+    {
+      "id": "5",
+      "text": "Nothing is so exhausting as indecision, and nothing so futile.",
+      "author": "Bertrand Russel"
+    }
+  ]
+}
