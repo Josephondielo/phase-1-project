@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My To-Do List</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+
+    <body>
+        <h1>My To-Do List</h1>
+
+        <h2>Quotes</h2>
+        <div id="quote" class="quote"></div>
+
+        <form id="todo-form">
+            <input type="text" id="task-input" placeholder="Task name..." required />
+            <input type="datetime-local" id="date-input" />
+            <button type="submit">Add Task</button>
+        </form>
+
+        <div id="tasks"></div>
+
+        <div id="notification" class="hidden"></div>
+
+
+        <audio id="alarm-sound" src="https://cdn.pixabay.com/audio/2025/03/22/audio_13c95b3c9f.mp3" preload="auto"></audio>
+
+        <script src="script.js"></script>
+
+    </body>
+
+</html>
