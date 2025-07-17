@@ -1,0 +1,20 @@
+{
+  "name": "phase-1-project",
+  "version": "1.0.0",
+  "description": "This is a to-do list application built using HTML, CSS, and JavaScript. It allows users to manage tasks efficiently with due dates, reminders (with alarm sound), motivational quotes, and persistent storage using a local `db.json`.\r ## Description\r  This project is a to-do list manager that allows users to:\r - Add tasks with a title and due date\r - Set a choice alarm reminder for each task\r - View motivational quotes\r - Store data locally with `db.json`\r - Hear alarms play when tasks are due\r ## Overview\r The application interface includes:\r - A task entry form (with task name, date-time, and alarm selector)\r - A live task list with reminders\r - Motivational quote display\r - Alarm sound support\r ## Technologies used",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Josephondielo/phase-1-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Josephondielo/phase-1-project/issues"
+  },
+  "homepage": "https://github.com/Josephondielo/phase-1-project#readme"
+}
