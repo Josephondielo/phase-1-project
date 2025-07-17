@@ -16,8 +16,16 @@
         <form id="todo-form">
             <input type="text" id="task-input" placeholder="Task name..." required />
             <input type="datetime-local" id="date-input" />
+
+            <label for="alarm-select">Choose Alarm:</label>
+            <select id="alarm-select">
+                <option value="">-- Select Alarm --</option>
+                <!-- Options will be added dynamically from db.json -->
+            </select>
+
             <button type="submit">Add Task</button>
         </form>
+
 
         <div id="tasks"></div>
 

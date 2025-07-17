@@ -1,8 +1,9 @@
-document.addEventListener("DOMContentLoaded", () =>{
-    // Get DOM elements needed for interaction
+document.addEventListener("DOMContentLoaded", () => {
+  // Get DOM elements needed for interaction
   const form = document.getElementById("todo-form");
   const taskInput = document.getElementById("task-input");
   const dateInput = document.getElementById("date-input");
+  const alarmSelect = document.getElementById("alarm-select");
   const tasksDiv = document.getElementById("tasks");
   const alarmSound = document.getElementById("alarm-sound");
   const quoteDiv = document.getElementById("quote");
@@ -10,6 +11,24 @@ document.addEventListener("DOMContentLoaded", () =>{
   // Define the backend API URLs
   const API_URL = "http://localhost:3000/tasks";
   const QUOTES_API_URL = "http://localhost:3000/quotes";
+  const ALARMS_API_URL = "http://localhost:3000/alarms";
+
+  // Load alarms into dropdown
+  function loadAlarms() {
+    fetch(ALARMS_API_URL)
+      .then((res) => res.json())
+      .then((alarms) => {
+        alarms.forEach((alarm) => {
+          const option = document.createElement("option");
+          option.value = alarm.url;
+          option.textContent = `Alarm ${alarm.id} (${alarm.duration}s)`;
+          alarmSelect.appendChild(option);
+        });
+      })
+      .catch((err) => {
+        console.error("Failed to load alarms:", err);
+      });
+  }
 
   // Function to render a single task in the UI
   function renderTask(task) {
@@ -24,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     if (task.dueDate) {
       const small = document.createElement("small");
       small.textContent = new Date(task.dueDate).toLocaleString();
+      textSpan.appendChild(document.createElement("br"));
       textSpan.appendChild(small);
     }
 
@@ -86,9 +106,18 @@ document.addEventListener("DOMContentLoaded", () =>{
     if (!task.dueDate || task.done) return;
 
     const timeDiff = new Date(task.dueDate).getTime() - Date.now();
+
     if (timeDiff > 0) {
       setTimeout(() => {
-        alarmSound.play();
+        if (task.alarmUrl) {
+          alarmSound.src = task.alarmUrl;
+          alarmSound
+            .play()
+            .then(() => console.log("Alarm played!"))
+            .catch((err) => {
+              console.log("Alarm playback blocked by browser. User interaction required.", err);
+            });
+        }
 
         const notification = document.getElementById("notification");
         notification.textContent = `Reminder for: ${task.text}`;
@@ -111,37 +140,41 @@ document.addEventListener("DOMContentLoaded", () =>{
           renderTask(task);
           scheduleAlarm(task);
         });
+      })
+      .catch((err) => {
+        console.error("Failed to load tasks:", err);
       });
   }
 
-  // Fetch and display the quote from db.json
- function loadQuote() {
-  fetch(QUOTES_API_URL)
-    .then((res) => res.json())
-    .then((quotes) => {
-      quoteDiv.innerHTML = ""; // clear previous content
+  // Fetch and display quotes from db.json
+  function loadQuote() {
+    fetch(QUOTES_API_URL)
+      .then((res) => res.json())
+      .then((quotes) => {
+        quoteDiv.innerHTML = "";
 
-      if (quotes.length > 0) {
-        quotes.forEach((quote) => {
-          const p = document.createElement("p");
-          p.textContent = `"${quote.text}"`;
+        if (quotes.length > 0) {
+          quotes.forEach((quote) => {
+            const p = document.createElement("p");
+            p.textContent = `"${quote.text}"`;
 
-          // Optionally show author if present
-          if (quote.author) {
-            const authorSpan = document.createElement("span");
-            authorSpan.textContent = ` — ${quote.author}`;
-            authorSpan.style.fontWeight = "bold";
-            p.appendChild(authorSpan);
-          }
+            if (quote.author) {
+              const authorSpan = document.createElement("span");
+              authorSpan.textContent = ` — ${quote.author}`;
+              authorSpan.style.fontWeight = "bold";
+              p.appendChild(authorSpan);
+            }
 
-          quoteDiv.appendChild(p);
-        });
-      } else {
-        quoteDiv.textContent = "No quotes found.";
-      }
-    });
-}
-
+            quoteDiv.appendChild(p);
+          });
+        } else {
+          quoteDiv.textContent = "No quotes found.";
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to load quotes:", err);
+      });
+  }
 
   // Handle form submission
   form.addEventListener("submit", (e) => {
@@ -151,30 +184,35 @@ document.addEventListener("DOMContentLoaded", () =>{
     const dueDate = dateInput.value
       ? new Date(dateInput.value).toISOString()
       : null;
+    const alarmUrl = alarmSelect.value || null;
 
     if (!text) return;
 
     const task = {
       text,
       dueDate,
-      done: false
+      done: false,
+      alarmUrl,
     };
 
     fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(task)
+      body: JSON.stringify(task),
     })
       .then((res) => res.json())
       .then((newTask) => {
         renderTask(newTask);
         scheduleAlarm(newTask);
         form.reset();
+      })
+      .catch((err) => {
+        console.error("Failed to save task:", err);
       });
   });
 
-  // Load existing tasks and the quote on page load
+  // Load everything on page load
   loadTasks();
   loadQuote();
-
+  loadAlarms();
 });

@@ -57,5 +57,42 @@
       "text": "Nothing is so exhausting as indecision, and nothing so futile.",
       "author": "Bertrand Russel"
     }
+  ],
+  "alarms": [
+    {
+      "id": "1",
+      "url": "https://cdn.pixabay.com/audio/2025/07/13/audio_e2dbcebdff.mp3",
+      "duration": 7,
+      "author": "Pixabay",
+      "format": "mp3"
+    },
+    {
+      "id": "2",
+      "url": "https://cdn.pixabay.com/audio/2025/07/13/audio_af7750bcfc.mp3",
+      "duration": 12,
+      "author": "Pixabay",
+      "format": "mp3"
+    },
+    {
+      "id": "3",
+      "url": "https://cdn.pixabay.com/audio/2025/04/14/audio_910d824456.mp3",
+      "duration": 7,
+      "author": "Pixabay",
+      "format": "mp3"
+    },
+    {
+      "id": "4",
+      "url": "https://cdn.pixabay.com/audio/2022/03/15/audio_09554b3b61.mp3",
+      "duration": 20,
+      "author": "Pixabay",
+      "format": "mp3"
+    },
+    {
+      "id": "5",
+      "url": "https://cdn.pixabay.com/audio/2024/11/10/audio_4e6e99bbbb.mp3",
+      "duration": 11,
+      "author": "Pixabay",
+      "format": "mp3"
+    }
   ]
 }
