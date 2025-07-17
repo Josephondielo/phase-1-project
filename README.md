@@ -22,9 +22,11 @@ The application interface includes:
 
 2. **Intall JSON server**:
    ```bash
-   git clone https://github.com/your-username/my-todo-list.git
-   cd my-todo-list
+   npm install -g json-server
+
 3. **Start JSON server**
    ```bash 
    json-server --watch db.json
-   The server will start at `http://localhost:3000`
+
+   ```
+   The server will start at: `http://localhost:3000`
