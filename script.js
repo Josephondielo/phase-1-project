@@ -1,5 +1,7 @@
+// The whole HTML document to load before running any JS
 document.addEventListener("DOMContentLoaded", () => {
-  // Get DOM elements needed for interaction
+
+  // Find references to the HTML elements needed
   const form = document.getElementById("todo-form");
   const taskInput = document.getElementById("task-input");
   const dateInput = document.getElementById("date-input");
@@ -8,12 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const alarmSound = document.getElementById("alarm-sound");
   const quoteDiv = document.getElementById("quote");
 
-  // Define the backend API URLs
+  // Defining API endpoints from db.json
   const API_URL = "http://localhost:3000/tasks";
   const QUOTES_API_URL = "http://localhost:3000/quotes";
   const ALARMS_API_URL = "http://localhost:3000/alarms";
 
-  // Load alarms into dropdown
+  // Fill all alarm options into the dropdown menu
   function loadAlarms() {
     fetch(ALARMS_API_URL)
       .then((res) => res.json())
@@ -30,16 +32,19 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // Function to render a single task in the UI
+  // Display a task in the task list
   function renderTask(task) {
     const taskDiv = document.createElement("div");
     taskDiv.className = "task";
 
+    // Add "done" styling if task is completed
     if (task.done) taskDiv.classList.add("done");
 
+    // Create text area for task content
     const textSpan = document.createElement("span");
     textSpan.textContent = task.text;
 
+    // Show the task if has a due date
     if (task.dueDate) {
       const small = document.createElement("small");
       small.textContent = new Date(task.dueDate).toLocaleString();
@@ -47,9 +52,11 @@ document.addEventListener("DOMContentLoaded", () => {
       textSpan.appendChild(small);
     }
 
+    // Create buttons: Done, Edit, Delete
     const btnGroup = document.createElement("div");
     btnGroup.className = "btn-group";
 
+    // Done/Undo button
     const doneBtn = document.createElement("button");
     doneBtn.textContent = task.done ? "Undo" : "Done";
     doneBtn.classList.add("btn-done");
@@ -65,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+    // Edit button
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edit";
     editBtn.classList.add("btn-edit");
@@ -83,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    // Delete button
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
     deleteBtn.classList.add("btn-delete");
@@ -93,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+    // Add buttons and text to task container
     btnGroup.appendChild(doneBtn);
     btnGroup.appendChild(editBtn);
     btnGroup.appendChild(deleteBtn);
@@ -101,14 +111,17 @@ document.addEventListener("DOMContentLoaded", () => {
     tasksDiv.appendChild(taskDiv);
   }
 
-  // Schedule an alarm for tasks with a future due date
+  // Schedule alarm for tasks with a due date
   function scheduleAlarm(task) {
+    // Skip if task is already done or has no due date
     if (!task.dueDate || task.done) return;
 
+    // Calculate time left until alarm should play
     const timeDiff = new Date(task.dueDate).getTime() - Date.now();
 
     if (timeDiff > 0) {
       setTimeout(() => {
+        // Play selected alarm sound
         if (task.alarmUrl) {
           alarmSound.src = task.alarmUrl;
           alarmSound
@@ -119,10 +132,12 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+        // Show popup notification for the task
         const notification = document.getElementById("notification");
         notification.textContent = `Reminder for: ${task.text}`;
         notification.classList.add("show");
 
+        // Hide notification after 5 seconds
         setTimeout(() => {
           notification.classList.remove("show");
         }, 5000);
@@ -130,15 +145,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Fetch and display all tasks from db.json
+  // Load and display all tasks
   function loadTasks() {
-    tasksDiv.innerHTML = "";
+    tasksDiv.innerHTML = ""; // Clear existing tasks
     fetch(API_URL)
       .then((res) => res.json())
       .then((tasks) => {
         tasks.forEach((task) => {
-          renderTask(task);
-          scheduleAlarm(task);
+          renderTask(task);     // Show task
+          scheduleAlarm(task);  // Set reminder
         });
       })
       .catch((err) => {
@@ -146,18 +161,19 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // Fetch and display quotes from db.json
+  // Load and display all quotes from db.json
   function loadQuote() {
     fetch(QUOTES_API_URL)
       .then((res) => res.json())
       .then((quotes) => {
-        quoteDiv.innerHTML = "";
+        quoteDiv.innerHTML = ""; // Clear previous quotes
 
         if (quotes.length > 0) {
           quotes.forEach((quote) => {
             const p = document.createElement("p");
             p.textContent = `"${quote.text}"`;
 
+            // Show author if available
             if (quote.author) {
               const authorSpan = document.createElement("span");
               authorSpan.textContent = ` — ${quote.author}`;
@@ -176,18 +192,21 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // Handle form submission
+  // Handle task submission from the form
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent page reload
 
+    // Get form values
     const text = taskInput.value.trim();
     const dueDate = dateInput.value
       ? new Date(dateInput.value).toISOString()
       : null;
     const alarmUrl = alarmSelect.value || null;
 
+    // Don't allow empty tasks
     if (!text) return;
 
+    // Create a new task object
     const task = {
       text,
       dueDate,
@@ -195,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alarmUrl,
     };
 
+    // Save new task to db.json
     fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -202,16 +222,16 @@ document.addEventListener("DOMContentLoaded", () => {
     })
       .then((res) => res.json())
       .then((newTask) => {
-        renderTask(newTask);
-        scheduleAlarm(newTask);
-        form.reset();
+        renderTask(newTask);     // Display it
+        scheduleAlarm(newTask);  // Schedule alarm
+        form.reset();            // Clear form
       })
       .catch((err) => {
         console.error("Failed to save task:", err);
       });
   });
 
-  // Load everything on page load
+  // Initial loading of data on page open
   loadTasks();
   loadQuote();
   loadAlarms();
