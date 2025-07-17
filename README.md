@@ -13,7 +13,8 @@ The application interface includes:
 - A live task list with reminders
 - Motivational quote display
 - Alarm sound support
-## Overview
+## Technologies used
+
 - **HTML**: Structure of the web app
 - **CSS**: Styling and responsive layout
 - **JavaScript**: Dynamic behavior, reminders, DOM manipulation
