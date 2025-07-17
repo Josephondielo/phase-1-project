@@ -13,3 +13,18 @@ The application interface includes:
 - A live task list with reminders
 - Motivational quote display
 - Alarm sound support
+## Installation
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/my-todo-list.git
+   cd my-todo-list
+
+2. **Intall JSON server**:
+   ```bash
+   git clone https://github.com/your-username/my-todo-list.git
+   cd my-todo-list
+3. **Start JSON server**
+   ```bash 
+   json-server --watch db.json
+   The server will start at `http://localhost:3000`
