@@ -30,3 +30,13 @@ The application interface includes:
 
    ```
    The server will start at: `http://localhost:3000`
+   
+## How to run the Project
+
+1. Open index.html in your browser using Live Server (VS Code) or simply double-click it.
+
+2. Make sure JSON Server is running in the background to load tasks, alarms, and quotes.
+
+3. Add a task with a name, select a date and time, and choose an alarm from the dropdown.
+
+4. The task will be stored in db.json and will trigger an alert and audio reminder at the set time.
