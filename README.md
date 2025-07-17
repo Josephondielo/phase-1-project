@@ -7,4 +7,9 @@ This is a to-do list application built using HTML, CSS, and JavaScript. It allow
 - View motivational quotes
 - Store data locally with `db.json`
 - Hear alarms play when tasks are due
-
+## Overview
+The application interface includes:
+- A task entry form (with task name, date-time, and alarm selector)
+- A live task list with reminders
+- Motivational quote display
+- Alarm sound support
