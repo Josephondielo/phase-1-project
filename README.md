@@ -17,7 +17,7 @@ The application interface includes:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/my-todo-list.git
+   git clone https://github.com/Josephondielo/phase-1-project
    cd my-todo-list
 
 2. **Intall JSON server**:
@@ -70,3 +70,5 @@ The application interface includes:
   ]
 }
 
+```
+## 
