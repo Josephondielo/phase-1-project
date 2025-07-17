@@ -71,4 +71,14 @@ The application interface includes:
 }
 
 ```
-## 
+## Credits
+- Audio clips from Pixabay Free Audio
+- Motivational quotes from public APIs 
+
+## Author
+Joseph Ondielo
+
+## Contact
+
+## Lincense
+
