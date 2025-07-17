@@ -30,7 +30,7 @@ The application interface includes:
 
    ```
    The server will start at: `http://localhost:3000`
-   
+
 ## How to run the Project
 
 1. Open index.html in your browser using Live Server (VS Code) or simply double-click it.
@@ -40,3 +40,33 @@ The application interface includes:
 3. Add a task with a name, select a date and time, and choose an alarm from the dropdown.
 
 4. The task will be stored in db.json and will trigger an alert and audio reminder at the set time.
+
+## Sample of `db.json` structure
+```bash json 
+{
+  "tasks": [
+    {
+      "id": "bb7e",
+      "text": "Calling Mum",
+      "dueDate": "2025-07-18T09:10:00.000Z",
+      "done": false
+    },
+  ],
+  "quotes": [
+    {
+      "id": "1",
+      "text": "He who awaits much can expect little.",
+      "author": "Gabriel Garcia"
+    }
+  ],
+  "alarms": [
+    {
+      "id": "1",
+      "url": "https://cdn.pixabay.com/audio/2025/07/13/audio_e2dbcebdff.mp3",
+      "duration": 7,
+      "author": "Pixabay",
+      "format": "mp3"
+    }
+  ]
+}
+
