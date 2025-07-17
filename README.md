@@ -72,13 +72,15 @@ The application interface includes:
 
 ```
 ## Credits
-- Audio clips from Pixabay Free Audio
+- Audio clips from "Pixabay Free Audio"
 - Motivational quotes from public APIs 
 
 ## Author
 Joseph Ondielo
 
 ## Contact
+josebonagain@gmail.com
 
 ## Lincense
+MIT
 
