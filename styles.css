@@ -102,3 +102,20 @@ h2 {
   text-align: center;
   max-width: 600px;
 }
+
+#task-input{
+  border-radius: 10px;
+  width: 100px;
+
+}
+#alarm-select{
+  border-radius: 10px;
+  width: 120px;
+  border-style: solid;
+
+}
+#date-input{
+  border-radius: 10px;
+  width: 120px;
+
+}
