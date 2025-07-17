@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const quoteDiv = document.getElementById("quote");
 
   // Defining API endpoints from db.json
-  const API_URL = "http://localhost:3000/tasks";
-  const QUOTES_API_URL = "http://localhost:3000/quotes";
-  const ALARMS_API_URL = "http://localhost:3000/alarms";
+  const API_URL = "https://phase-1-project-5xh1.onrender.com/tasks";
+  const QUOTES_API_URL = "https://phase-1-project-5xh1.onrender.com/quotes";
+  const ALARMS_API_URL = "https://phase-1-project-5xh1.onrender.com/alarms";
 
   // Fill all alarm options into the dropdown menu
   function loadAlarms() {
