@@ -13,6 +13,13 @@ The application interface includes:
 - A live task list with reminders
 - Motivational quote display
 - Alarm sound support
+## Overview
+- **HTML**: Structure of the web app
+- **CSS**: Styling and responsive layout
+- **JavaScript**: Dynamic behavior, reminders, DOM manipulation
+- **JSON Server**: Local API for persistent task/quote/alarm data
+- **Audio APIs**: For triggering reminder sounds
+
 ## Installation
 
 1. **Clone the Repository**:
@@ -81,6 +88,6 @@ Joseph Ondielo
 ## Contact
 josebonagain@gmail.com
 
-## Lincense
+## License
 MIT
 
