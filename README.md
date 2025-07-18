@@ -1,5 +1,5 @@
 # Phase 1 Project
-**Live Site (Frontend on GitHub Pages):** [Click to View]`https://josephondielo.github.io/my-own-website/`
+**Live Site (Frontend on GitHub Pages):** [Click to View]```bash https://josephondielo.github.io/my-own-website/```
 This is a to-do list application built using HTML, CSS, and JavaScript. It allows users to manage tasks efficiently with due dates, reminders (with alarm sound), motivational quotes, and persistent storage using a local `db.json`.
 ## Description
  This project is a to-do list manager that allows users to:
