@@ -6,37 +6,29 @@
         <title>My To-Do List</title>
         <link rel="stylesheet" href="styles.css" />
     </head>
-
     <body>
         <h1>My To-Do List</h1>
-
         <h2>Quotes</h2>
         <div id="quote" class="quote"></div>
-
         <form id="todo-form">
-           
             <input type="text" id="task-input" placeholder="Task name..." required />
             <input type="datetime-local" id="date-input" />
-            
             <label for="alarm-select"></label>
             <select id="alarm-select">
                 <option value="">-- Select Alarm --</option>
                 <!-- Options will be added dynamically from db.json -->
             </select>
-
             <button type="submit">Add Task</button>
         </form>
-
-
         <div id="tasks"></div>
-
         <div id="notification" class="hidden"></div>
-
-
         <audio id="alarm-sound" src="https://cdn.pixabay.com/audio/2025/03/22/audio_13c95b3c9f.mp3" preload="auto"></audio>
-
         <script src="script.js"></script>
-
     </body>
-
 </html>
+
+
+
+
+
+
